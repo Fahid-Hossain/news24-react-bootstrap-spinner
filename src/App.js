@@ -1,9 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import News from './components/News/News';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row } from 'react-bootstrap';
+import { Row, Spinner } from 'react-bootstrap';
 
 function App() {
   const [news, setNews] = useState([])
@@ -16,14 +15,18 @@ function App() {
   return (
     <div>
       <h1>TodaysNews:{news.length}</h1>
+      {
+        news.length===0 ? <Spinner className="loader" animation="border" /> :
+
       <Row xs={1} md={3} className="g-4">
         {
-          news.map(nw => <News key={nw.author} news={nw}>
+          news.map(nw => <News news={nw}>
 
 
           </News>)
         }
       </Row>
+      }
 
     </div>
   );
